@@ -1,31 +1,40 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nvf.url = "github:notashelf/nvf";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     packages."aarch64-darwin" = let
-        neovimConfigured = (inputs.nvf.lib.neovimConfiguration {
-          inherit (nixpkgs.legacyPackages."aarch64-darwin") pkgs;
-          modules = [{
-              config.vim = {
-                # Enable custom theming options
-                theme.enable = true;
+      neovimConfigured = (inputs.nvf.lib.neovimConfiguration {
+        inherit (nixpkgs.legacyPackages."aarch64-darwin") pkgs;
+        modules = [{
+          config.vim = {
 
-                # Enable Treesitter
-                # tree-sitter.enable = true;
+            viAlias = true;
+            vimAlias = true;
 
-                # Other options will go here. Refer to the config
-                # reference in Appendix B of the nvf manual.
-                # ...
-              };
-          }];
-        });
+            theme = {
+              enable = true;
+              name = "catppuccin";
+              style = "mocha";
+              transparent = true;
+            };
+
+            languages.nix.enable = true;
+
+            dashboard.startify.enable = true;
+
+            treesitter.enable = true;
+
+            filetree.neo-tree.enable = true;
+
+          };
+        }];
+      });
     in {
       # Set the default package to the wrapped instance of Neovim.
       # This will allow running your Neovim configuration with
