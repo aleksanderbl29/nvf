@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nvf = {
+    neovim-flake = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -11,12 +11,13 @@
   outputs = {
     self,
     nixpkgs,
+    neovim-flake,
     flake-utils,
     ...
-  } @ inputs:
+  }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
-      neovimConfigured = inputs.nvf.lib.neovimConfiguration {
+      neovimConfigured = neovim-flake.lib.${system}.neovimConfiguration {
         inherit pkgs;
         modules = [
           {
@@ -40,6 +41,6 @@
         ];
       };
     in {
-      packages.default = neovimConfigured.neovim;
+      packages.default = neovimConfigured;
     });
 }
