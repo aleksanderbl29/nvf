@@ -5,42 +5,41 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    packages."aarch64-darwin" = let
-      neovimConfigured = (inputs.nvf.lib.neovimConfiguration {
-        inherit (nixpkgs.legacyPackages."aarch64-darwin") pkgs;
-        modules = [{
-          config.vim = {
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    ...
+  } @ inputs:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      neovimConfigured = inputs.nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [
+          {
+            config.vim = {
+              viAlias = true;
+              vimAlias = true;
 
-            viAlias = true;
-            vimAlias = true;
+              theme = {
+                enable = true;
+                name = "catppuccin";
+                style = "mocha";
+                transparent = true;
+              };
 
-            theme = {
-              enable = true;
-              name = "catppuccin";
-              style = "mocha";
-              transparent = true;
+              languages.nix.enable = true;
+              dashboard.startify.enable = true;
+              treesitter.enable = true;
+              filetree.neo-tree.enable = true;
             };
-
-            languages.nix.enable = true;
-
-            dashboard.startify.enable = true;
-
-            treesitter.enable = true;
-
-            filetree.neo-tree.enable = true;
-
-          };
-        }];
-      });
+          }
+        ];
+      };
     in {
-      # Set the default package to the wrapped instance of Neovim.
-      # This will allow running your Neovim configuration with
-      # `nix run` and in addition, sharing your configuration with
-      # other users in case your repository is public.
-      default = neovimConfigured.neovim;
-    };
-  };
+      packages.default = neovimConfigured.neovim;
+    });
 }
