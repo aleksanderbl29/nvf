@@ -5,41 +5,45 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    ...
-  } @ inputs:
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-      neovimConfigured = inputs.nvf.lib.neovimConfiguration {
-        inherit pkgs;
-        modules = [
-          {
-            config.vim = {
-              viAlias = true;
-              vimAlias = true;
-
-              theme = {
-                enable = true;
-                name = "catppuccin";
-                style = "mocha";
-                transparent = true;
-              };
-
-              languages.nix.enable = true;
-              dashboard.startify.enable = true;
-              treesitter.enable = true;
-              filetree.neo-tree.enable = true;
-            };
-          }
-        ];
-      };
+  outputs = { self, nixpkgs, nvf }:
+    let
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in {
-      packages.default = neovimConfigured.neovim;
-    });
+      packages = forAllSystems (system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+        neovimConfigured = nvf.lib.neovimConfiguration {
+          inherit pkgs;
+          modules = [
+            {
+              config.vim = {
+                viAlias = true;
+                vimAlias = true;
+
+                theme = {
+                  enable = true;
+                  name = "catppuccin";
+                  style = "mocha";
+                  transparent = true;
+                };
+
+                languages.nix.enable = true;
+                dashboard.startify.enable = true;
+                treesitter.enable = true;
+                filetree.neo-tree.enable = true;
+              };
+            }
+          ];
+        };
+      in {
+        default = neovimConfigured.neovim;
+      });
+    };
 }
