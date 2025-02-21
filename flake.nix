@@ -42,7 +42,12 @@
                     transparent = true;
                   };
 
-                  languages.nix.enable = true;
+                  languages = {
+                    enableTreesitter = true;
+                    nix.enable = true;
+                    python.enable = true;
+                  };
+
                   dashboard.startify.enable = true;
                   treesitter.enable = true;
                   filetree.neo-tree.enable = true;
