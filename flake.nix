@@ -43,9 +43,20 @@
                   };
 
                   languages = {
+                    enableLSP = true;
+                    enableFormat = true;
                     enableTreesitter = true;
                     nix.enable = true;
                     python.enable = true;
+                  };
+
+                  autocomplete.nvim-cmp = {
+                    enable = true;
+                  };
+
+                  lsp = {
+                    enable = true;
+                    formatOnSave = true;
                   };
 
                   dashboard.startify.enable = true;
