@@ -48,9 +48,6 @@
                     enableTreesitter = true;
                     nix = {
                       enable = true;
-                      format = {
-                        type = "nixfmt";
-                      };
                     };
                     python.enable = true;
                     r.enable = true;
@@ -59,6 +56,10 @@
 
                   autocomplete.nvim-cmp = {
                     enable = true;
+                    format = {
+                        # Use nixfmt-rfc-style for automatic formatting
+                      package = pkgs.nixfmt-rfc-style;
+                    };
                   };
 
                   lsp = {
