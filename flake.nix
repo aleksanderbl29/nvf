@@ -54,7 +54,10 @@
                       };
                     };
                     python.enable = true;
-                    r.enable = true;
+                    r = {
+                      enable = true;
+                      format.type = "styler";
+                    };
                     ts.enable = true;
                   };
 
