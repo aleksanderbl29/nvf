@@ -58,6 +58,10 @@
                       enable = true;
                       format.type = "styler";
                     };
+                    markdown = {
+                      enable = true;
+                      extensions.render-markdown-nvim.enable = true;
+                    };
                     ts.enable = true;
                   };
 
