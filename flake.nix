@@ -75,7 +75,7 @@
 
                   dashboard.startify.enable = true;
                   treesitter.enable = true;
-                  filetree.neo-tree.enable = true;
+                  # filetree.neo-tree.enable = true;
                 };
               }
             ];
