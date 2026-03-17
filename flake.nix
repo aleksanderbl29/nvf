@@ -45,13 +45,7 @@
                   languages = {
                     enableFormat = true;
                     enableTreesitter = true;
-                    nix = {
-                      enable = true;
-                      format = {
-                        # Use nixfmt-rfc-style for automatic formatting
-                        package = pkgs.nixfmt-rfc-style;
-                      };
-                    };
+                    nix.enable = true;
                     python.enable = true;
                     r = {
                       enable = true;
