@@ -102,16 +102,17 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1773747408,
-        "narHash": "sha256-PvikPClUmDs6hnk6XISdoClrhRkhfNiTiXVRkNhXpQs=",
-        "owner": "notashelf",
-        "repo": "nvf",
-        "rev": "a7cfe3c6dcbbef5ce17deeebc51a980682c60ebd",
+        "lastModified": 1773767104,
+        "narHash": "sha256-hF+62gw/WHtAK/cqYWYGYJI3DKXMD0QKj2sj8lEP5yc=",
+        "owner": "aleksanderbl29",
+        "repo": "upstream-nvf",
+        "rev": "7063612ca7a828d68f0fcbb53e44040ab9826999",
         "type": "github"
       },
       "original": {
-        "owner": "notashelf",
-        "repo": "nvf",
+        "owner": "aleksanderbl29",
+        "ref": "feat/air-formatter",
+        "repo": "upstream-nvf",
         "type": "github"
       }
     },
