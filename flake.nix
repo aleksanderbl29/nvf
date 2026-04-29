@@ -59,7 +59,6 @@
                         };
                       };
                     };
-                    tex.enable = true;
                     ts.enable = true;
                   };
 
