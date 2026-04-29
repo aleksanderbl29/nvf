@@ -62,7 +62,7 @@
                         };
                       };
                     };
-                    ts.enable = true;
+                    typescript.enable = true;
                   };
 
                   autocomplete.nvim-cmp = {
