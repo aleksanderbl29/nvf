@@ -45,7 +45,10 @@
                   languages = {
                     enableFormat = true;
                     enableTreesitter = true;
-                    nix.enable = true;
+                    nix = {
+                      enable = true;
+                      format.type = [ "nixfmt" ];
+                    };
                     python.enable = true;
                     r = {
                       enable = true;
