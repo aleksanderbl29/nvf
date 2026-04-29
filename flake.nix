@@ -62,6 +62,7 @@
                         };
                       };
                     };
+                    astro.enable = true;
                     typescript.enable = true;
                   };
 
