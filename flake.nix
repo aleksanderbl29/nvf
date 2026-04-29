@@ -2,8 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf = {
-      # url = "github:notashelf/nvf";
-      url = "github:aleksanderbl29/upstream-nvf/feat/air-formatter";
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -50,7 +49,7 @@
                     python.enable = true;
                     r = {
                       enable = true;
-                      format.type = "air";
+                      format.type = "styler";
                     };
                     markdown = {
                       enable = true;
