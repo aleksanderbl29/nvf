@@ -62,7 +62,10 @@
                         };
                       };
                     };
-                    astro.enable = true;
+                    astro = {
+                      enable = true;
+                      format.type = [ "deno" ];
+                    };
                     typescript.enable = true;
                   };
 
