@@ -42,6 +42,39 @@
                     transparent = true;
                   };
 
+                  visuals = {
+                    rainbow-delimiters = {
+                      enable = true;
+                      #   setupOpts.highlight = [
+                      #     "RainbowDelimiterRed"
+                      #     "RainbowDelimiterYellow"
+                      #     "RainbowDelimiterBlue"
+                      #     "RainbowDelimiterOrange"
+                      #     "RainbowDelimiterGreen"
+                      #     "RainbowDelimiterViolet"
+                      #     "RainbowDelimiterCyan"
+                      #   ];
+                    };
+                    indent-blankline = {
+                      enable = true;
+                      # setupOpts = {
+                      #   indent = {
+                      #     char = "│";
+                      #
+                      #     highlight = [
+                      #       "RainbowDelimiterRed"
+                      #       "RainbowDelimiterYellow"
+                      #       "RainbowDelimiterBlue"
+                      #       "RainbowDelimiterOrange"
+                      #       "RainbowDelimiterGreen"
+                      #       "RainbowDelimiterViolet"
+                      #       "RainbowDelimiterCyan"
+                      #     ];
+                      #   };
+                      # };
+                    };
+                  };
+
                   languages = {
                     enableFormat = true;
                     enableTreesitter = true;
